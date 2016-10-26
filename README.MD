@@ -1,0 +1,1 @@
+Phoca Upgrade System plugin is Joomla! CMS extension. Plugin which tries to convert Bootstrap 2 output to Bootstrap 3 output
