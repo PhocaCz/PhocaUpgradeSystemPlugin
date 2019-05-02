@@ -1,0 +1,16 @@
+{
+	"author": "Jan Pavelka (www.phoca.cz)",
+	"authorUrl": "https://www.phoca.cz",
+	"copyright": "Jan Pavelka",
+	"license": "GNU/GPL",
+	"projectName": "PhocaUpgradeSystemPlugin",
+	"extensionName": "Phoca Upgrade System Plugin",
+	"projectInitials" : "UG",				  
+	"description": "Phoca Upgrade System plugin is Joomla! CMS plugin which tries to transform Bootstrap 2 output into Bootstrap 3 output on Joomla! website. This is needed when Joomla! renders Bootstrap 2 output but your template is based on Bootstrap 3.",
+	"projectUrl": "https://www.phoca.cz/phoca-upgrade-system-plugin",
+	"projectDocumentationUrl": "https://www.phoca.cz/documentation/category/131-phoca-upgrade-system-plugin",
+	"projectDemo" : {
+		"Demo": "https://www.phoca.cz/phocacartdemo/premiere/"
+	},
+	"projectColor": "#895ED1"
+}

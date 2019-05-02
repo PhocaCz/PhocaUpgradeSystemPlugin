@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension group="system" method="upgrade" type="plugin" version="3">
+<extension type="plugin" group="system" method="upgrade" version="3">
 	<name>plg_system_phocaupgrade</name>
-	<creationDate>17/10/2016</creationDate>
 	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>02/05/2019</creationDate>
 	<authorEmail></authorEmail>
-	<authorUrl>www.phoca.cz</authorUrl>
+	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.0.5</version>
-	
+	<version>3.1.2</version>
 	<description>PLG_SYSTEM_PHOCAUPGRADE_DESCRIPTION</description>
-	
+	<projectName>PhocaUpgradeSystemPlugin</projectName>
+
 	<files>
+		<filename plugin="phocaupgrade">index.html</filename>
 		<filename plugin="phocaupgrade">phocaupgrade.php</filename>
-		<filename >index.html</filename>
 	</files>
-	
+
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.plg_system_phocaupgrade.ini</language>
 		<language tag="en-GB">language/en-GB/en-GB.plg_system_phocaupgrade.sys.ini</language>
 	</languages>
-	
+
 	<administration>
 		<languages>
 			<language tag="en-GB">language/en-GB/en-GB.plg_system_phocaupgrade.ini</language>
@@ -28,19 +28,35 @@
 		</languages>
 	</administration>
 	
-<config>
-		<fields name="params" >
-			<fieldset name="basic">	
-		
-			<field name="template_style" type="templatestyle"
-				client="site"
-				description="PLG_SYSTEM_PHOCAUPGRADE_TEMPLATE_DESC"
-				label="PLG_SYSTEM_PHOCAUPGRADE_TEMPLATE_DESC"
-			><option value="-1">PLG_SYSTEM_PHOCAUPGRADE_ALL</option>
-			</field>
-			
-		
-			</fieldset>
-		</fields>
-	</config>
+	<config>
+        <fields name="params">
+            <fieldset name="basic">
+
+                <field name="template_style" type="templatestyle" client="site" description="PLG_SYSTEM_PHOCAUPGRADE_TEMPLATE_DESC" label="PLG_SYSTEM_PHOCAUPGRADE_TEMPLATE_LABEL">
+                    <option value="-1">PLG_SYSTEM_PHOCAUPGRADE_ALL</option>
+                </field>
+
+                <field name="remove_obsolete_bootstrap_js" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOSTRAP_JAVASCRIPT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOSTRAP_JAVASCRIPT_DESC">
+                    <option value="1">PLG_SYSTEM_PHOCAUPGRADE_YES</option>
+                    <option value="0">PLG_SYSTEM_PHOCAUPGRADE_NO</option>
+                </field>
+                <field name="obsolete_bjs_option" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOTSTRAP_JAVASCRIPT_SET_COMPONENT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOTSTRAP_JAVASCRIPT_SET_COMPONENT_DESC"/>
+
+                <field name="obsolete_bjs_view" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOTSTRAP_JAVASCRIPT_SET_VIEW_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_OBSOLETE_BOOTSTRAP_JAVASCRIPT_SET_VIEW_DESC"/>
+
+
+                <field name="force_template_option" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_COMPONENT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_COMPONENT_DESC"/>
+
+                <field name="force_template_view" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_VIEW_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_VIEW_DESC"/>
+
+                <field name="force_template_id" type="templatestyle" client="site" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_TEMPLATE_ID_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_TEMPLATE_ID_DESC"/>
+
+
+            </fieldset>
+        </fields>
+    </config>
+
+	<updateservers>
+		<server type="extension" name="PLG_SYSTEM_PHOCAUPGRADE" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaUpgradeSystemPlugin/master/manifest.xml]]></server>
+	</updateservers>
 </extension>
