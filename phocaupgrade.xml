@@ -13,6 +13,7 @@
 
 	<files>
 		<filename plugin="phocaupgrade">index.html</filename>
+		<filename plugin="phocaupgrade">manifest.xml</filename>
 		<filename plugin="phocaupgrade">phocaupgrade.php</filename>
 	</files>
 

@@ -44,6 +44,13 @@ class plgSystemPhocaUpgrade extends JPlugin
         $obsolete_bjs_view 	= $this->params->get('obsolete_bjs_view', '');
 
 
+        $obsolete_bjs_optionA = array_map('trim', explode(',', $obsolete_bjs_option));// Remove spaces
+        $obsolete_bjs_viewA = array_map('trim', explode(',', $obsolete_bjs_view));
+        $obsolete_bjs_optionA = array_filter($obsolete_bjs_optionA);// Remove empty values from array
+        $obsolete_bjs_viewA = array_filter($obsolete_bjs_viewA);
+
+
+
 		$headers = JFactory::getApplication()->getHeaders();
 
 
@@ -61,15 +68,12 @@ class plgSystemPhocaUpgrade extends JPlugin
 		$buffer = JFactory::getApplication()->getBody();
 		$bufferNew = str_replace($old, $new, $buffer);
 
-
-
-
-
-
+		
 		// OLD BOOTSTRAP
-        if (($option == $obsolete_bjs_option && $view == '')
-            || ($option == $obsolete_bjs_option && $view == $obsolete_bjs_view)
-            || ($obsolete_bjs_option == '' && $obsolete_bjs_view == '' )) {
+        if ((in_array($option, $obsolete_bjs_optionA) && empty($obsolete_bjs_viewA))
+            || (in_array($option, $obsolete_bjs_optionA) && in_array($view, $obsolete_bjs_viewA))
+            || (empty($obsolete_bjs_optionA) && empty($obsolete_bjs_viewA))) {
+
 
             if ($remove_obsolete_bootstrap_js == 1 && $format != 'json') {
 
