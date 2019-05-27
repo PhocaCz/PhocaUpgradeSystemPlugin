@@ -50,7 +50,7 @@ Phoca Upgrade System plugin is Joomla! CMS plugin which tries to transform Boots
 
 ## Version
 
-3.1.2
+3.1.3
 
 
 
