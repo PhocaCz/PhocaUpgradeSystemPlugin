@@ -42,6 +42,8 @@ class plgSystemPhocaUpgrade extends JPlugin
 
         $obsolete_bjs_option 	= $this->params->get('obsolete_bjs_option', '');
         $obsolete_bjs_view 	= $this->params->get('obsolete_bjs_view', '');
+		
+		$remove_mootools_js 	= $this->params->get('remove_mootools_js', 0);
 
 
         $obsolete_bjs_optionA = array_map('trim', explode(',', $obsolete_bjs_option));// Remove spaces
@@ -83,6 +85,11 @@ class plgSystemPhocaUpgrade extends JPlugin
                 $bufferNew = preg_replace($pattern, '', $bufferNew);
             }
         }
+		
+		if ($remove_mootools_js == 1 && $format != 'json') {
+			$pattern = '/(<script[^>]*src=".*(media\/system\/js\/(mootools-more.js|mootools-core.js)).*"[^>]*><\/script>)/i';
+            $bufferNew = preg_replace($pattern, '', $bufferNew);
+		}
 			/*$dom=new DOMDocument('1.0', 'UTF-8');
 			$dom->formatOutput			= false;
 			$dom->preserveWhiteSpace	= true;
