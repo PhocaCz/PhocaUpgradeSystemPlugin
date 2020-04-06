@@ -41,10 +41,11 @@ class plgSystemPhocaUpgrade extends JPlugin
 		}
 
         $obsolete_bjs_option 	= $this->params->get('obsolete_bjs_option', '');
-        $obsolete_bjs_view 	= $this->params->get('obsolete_bjs_view', '');
-		
-		$remove_mootools_js 	= $this->params->get('remove_mootools_js', 0);
+        $obsolete_bjs_view 		= $this->params->get('obsolete_bjs_view', '');
 
+		$remove_mootools_js 	= $this->params->get('remove_mootools_js', 0);
+		$remove_jquery_migrate	= $this->params->get('remove_jquery_migrate', 0);
+		$remove_frontediting_js	= $this->params->get('remove_frontediting_js', 0);
 
         $obsolete_bjs_optionA = array_map('trim', explode(',', $obsolete_bjs_option));// Remove spaces
         $obsolete_bjs_viewA = array_map('trim', explode(',', $obsolete_bjs_view));
@@ -70,7 +71,7 @@ class plgSystemPhocaUpgrade extends JPlugin
 		$buffer = JFactory::getApplication()->getBody();
 		$bufferNew = str_replace($old, $new, $buffer);
 
-		
+
 		// OLD BOOTSTRAP
         if ((in_array($option, $obsolete_bjs_optionA) && empty($obsolete_bjs_viewA))
             || (in_array($option, $obsolete_bjs_optionA) && in_array($view, $obsolete_bjs_viewA))
@@ -85,9 +86,26 @@ class plgSystemPhocaUpgrade extends JPlugin
                 $bufferNew = preg_replace($pattern, '', $bufferNew);
             }
         }
-		
+
 		if ($remove_mootools_js == 1 && $format != 'json') {
 			$pattern = '/(<script[^>]*src=".*(media\/system\/js\/(mootools-more.js|mootools-core.js)).*"[^>]*><\/script>)/i';
+            $bufferNew = preg_replace($pattern, '', $bufferNew);
+		}
+
+		if ($remove_jquery_migrate == 1 && $format != 'json') {
+
+			//$pattern = '/(<script[^>]*src=".*(media\/system\/js\/(jquery-migrate.min.js)).*"[^>]*><\/script>)/i';
+            //$bufferNew = preg_replace($pattern, '', $bufferNew);
+			$pattern = '/(<script[^>]*src=".*(media\/jui\/js\/(jquery-migrate.min.js)).*"[^>]*><\/script>)/i';
+            $bufferNew = preg_replace($pattern, '', $bufferNew);
+		}
+
+		if ($remove_frontediting_js == 1 && $format != 'json') {
+
+			$pattern = '/(<script[^>]*src=".*(media\/system\/js\/(frontediting.js)).*"[^>]*><\/script>)/i';
+            $bufferNew = preg_replace($pattern, '', $bufferNew);
+			// debug enabled
+			$pattern = '/(<script[^>]*src=".*(media\/system\/js\/(frontediting-uncompressed.js)).*"[^>]*><\/script>)/i';
             $bufferNew = preg_replace($pattern, '', $bufferNew);
 		}
 			/*$dom=new DOMDocument('1.0', 'UTF-8');
@@ -135,7 +153,7 @@ class plgSystemPhocaUpgrade extends JPlugin
 
 
 		$matches = array();
-		$pattern = '/(<script[^>]*src=".*(media\/com_phocacart\/js\/filter\/filter.js).*"[^>]*><\/script>)/i';
+		$pattern = '/(<script[^>]*src=".*(media\/com_phocacart\/js\/phoca\/phocafilter.js).*"[^>]*><\/script>)/i';
 		preg_match($pattern, $bufferNew, $matches);
 
 		if (isset($matches[0]) && $matches[0] != '') {
@@ -225,6 +243,33 @@ class plgSystemPhocaUpgrade extends JPlugin
 				}
 
 			}
+		}
+	}
+
+	public function onAfterInitialise(){
+
+	
+		$app 	= JFactory::getApplication();
+		if ($app->getName() != 'site') { return true;}
+
+		$enable_new_jquery 	= $this->params->get('enable_new_jquery', 0);
+
+		if ($enable_new_jquery == 1) {
+			JHtml::register('jquery.framework', function ($noConflict = true, $debug = null, $migrate = true) {
+				JHtml::_('script', 'plg_system_phocaupgrade/jquery-3.4.1.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
+
+				// Check if we are loading in noConflict
+				if ($noConflict)
+				{
+					JHtml::_('script', 'jui/jquery-noconflict.js', array('version' => 'auto', 'relative' => true));
+				}
+
+				// Check if we are loading Migrate
+				if ($migrate)
+				{
+					JHtml::_('script', 'jui/jquery-migrate.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
+				}
+			});
 		}
 	}
 

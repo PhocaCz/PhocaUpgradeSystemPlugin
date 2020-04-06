@@ -2,14 +2,20 @@
 <extension type="plugin" group="system" method="upgrade" version="3">
 	<name>plg_system_phocaupgrade</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>26/07/2019</creationDate>
+	<creationDate>06/04/2020</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.1.4</version>
+	<version>3.1.6</version>
 	<description>PLG_SYSTEM_PHOCAUPGRADE_DESCRIPTION</description>
 	<projectName>PhocaUpgradeSystemPlugin</projectName>
+
+	<media destination="plg_system_phocaupgrade" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+		<filename>index.html</filename>
+	</media>
 
 	<files>
 		<filename plugin="phocaupgrade">index.html</filename>
@@ -50,11 +56,28 @@
                     <option value="0">PLG_SYSTEM_PHOCAUPGRADE_NO</option>
                 </field>
 				
+				<field name="remove_jquery_migrate" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_JQUERY_MIGRATE_JAVASCRIPT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_JQUERY_MIGRATE_JAVASCRIPT_DESC">
+                    <option value="1">PLG_SYSTEM_PHOCAUPGRADE_YES</option>
+                    <option value="0">PLG_SYSTEM_PHOCAUPGRADE_NO</option>
+                </field>
+				
+				<field name="remove_frontediting_js" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_FRONT_EDITING_JAVASCRIPT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_REMOVE_FRONT_EDITING_JAVASCRIPT_DESC">
+                    <option value="1">PLG_SYSTEM_PHOCAUPGRADE_YES</option>
+                    <option value="0">PLG_SYSTEM_PHOCAUPGRADE_NO</option>
+                </field>
+				
+			
+				
                 <field name="force_template_option" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_COMPONENT_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_COMPONENT_DESC"/>
 
                 <field name="force_template_view" default="" size="10" type="text" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_VIEW_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_VIEW_DESC"/>
 
                 <field name="force_template_id" type="templatestyle" client="site" label="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_TEMPLATE_ID_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_FORCE_TEMPLATE_TEMPLATE_ID_DESC"/>
+				
+				<field name="enable_new_jquery" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_PHOCAUPGRADE_ENABLE_NEW_JQUERY_VERSION_LABEL" description="PLG_SYSTEM_PHOCAUPGRADE_ENABLE_NEW_JQUERY_VERSION_DESC">
+                    <option value="1">PLG_SYSTEM_PHOCAUPGRADE_YES</option>
+                    <option value="0">PLG_SYSTEM_PHOCAUPGRADE_NO</option>
+                </field>
 
 
             </fieldset>
