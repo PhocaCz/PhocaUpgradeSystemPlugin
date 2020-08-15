@@ -254,9 +254,15 @@ class plgSystemPhocaUpgrade extends JPlugin
 
 		$enable_new_jquery 	= $this->params->get('enable_new_jquery', 0);
 
-		if ($enable_new_jquery == 1) {
-			JHtml::register('jquery.framework', function ($noConflict = true, $debug = null, $migrate = true) {
-				JHtml::_('script', 'plg_system_phocaupgrade/jquery-3.4.1.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
+		if ($enable_new_jquery != 0) {
+
+	
+			if ($enable_new_jquery == 1) {
+				$enable_new_jquery = '3.4.1';// backward compatibility
+			}
+			
+			JHtml::register('jquery.framework', function ($noConflict = true, $debug = null, $migrate = true) use ($enable_new_jquery) {
+				JHtml::_('script', 'plg_system_phocaupgrade/jquery-'.strip_tags($enable_new_jquery).'.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
 
 				// Check if we are loading in noConflict
 				if ($noConflict)
