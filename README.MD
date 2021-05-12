@@ -2,7 +2,7 @@
 
 
 
-![Phoca Upgrade System Plugin](https://github.com/PhocaCz/PhocaUpgradeSystemPlugin/blob/master/phocaupgrade.png)
+![Phoca Upgrade System Plugin](https://github.com/PhocaCz/PhocaUpgradeSystemPlugin/blob/master/phocaupgrade.png?raw=true)
 
 # Phoca Upgrade System Plugin
 
@@ -50,9 +50,13 @@ Phoca Upgrade System plugin is Joomla! CMS plugin which tries to transform Boots
 
 
 
+
+
+
+
 ## Version
 
-3.1.7
+3.1.8
 
 
 
